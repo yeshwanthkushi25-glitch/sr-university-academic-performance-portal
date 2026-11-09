@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# SQLite Database files
+*.db
+*.sqlite3
+test_academic_portal.db
+
+# Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# Agent teamwork internal runtime files
+.agents/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Test & coverage artifacts
+.pytest_cache/
+.coverage
+htmlcov/
