@@ -106,12 +106,18 @@ The codebase is built on an **Industrial-Grade Flask Application Factory Archite
 ## 🌟 Core Functional Modules & Intelligence Engine
 
 ### 1. 📝 Student Multi-Step Evaluation Wizard
+The student evaluation intake wizard breaks complex multi-parameter data collection into a frictionless, 5-step guided journey with built-in validation, real-time attendance indicator color thresholds, and department-specific curriculum presets.
 - **Demographics & Profile:** Roll Number, Name, University Email, Department, Program, Semester, Mentor.
 - **Academic Trajectory:** Semester-by-semester SGPA inputs, registered credits, cleared credits, and backlog counters.
 - **Coursework Internals:** Subject codes, names, continuous internal marks ($/50$), attendance $\%$, and expected grades.
 - **Holistic Habit Assessment:** Weekly self-study hours, sleep duration, stress level, and extracurricular involvement.
 
-### 2. 📊 Performance Diagnostic Engine (`analyzer.py`)
+![Student Multi-Step Evaluation Wizard](assets/screenshots/01_student_evaluation_form.png)
+
+---
+
+### 2. 📊 Performance Diagnostic Engine & Analytics Dashboard
+A real-time analytical powerhouse that translates semester scores, attendance trends, and behavioral inputs into actionable clinical and academic intelligence:
 - **Credit-Weighted CGPA Calculation:**
   $$\text{Effective CGPA} = \frac{\sum_{i=1}^{n} (\text{SGPA}_i \times \text{Credits}_i)}{\sum_{i=1}^{n} \text{Credits}_i}$$
 - **Trajectory Status Classifier:** Compares $\Delta = \text{SGPA}_{t} - \text{SGPA}_{t-1}$:
@@ -127,14 +133,32 @@ The codebase is built on an **Industrial-Grade Flask Application Factory Archite
   4. *Study Discipline:* Normalized score mapped from self-study commitment bands.
   5. *Exam Readiness:* Standardized CGPA performance normalized to a $100$-point scale.
 - **Multi-Factor Risk Classifier:**
-  Calculates cumulative penalties for attendance deficits ($<75\%$), low CGPA ($<6.0$), active backlogs ($\times 15$ pts), weak subject clusters, and high stress levels. Classifies into *Low Risk*, *Moderate Risk*, *High Risk*, or *Critical Risk*.
+  Calculates cumulative penalties for attendance deficits ($<75\%$), low CGPA ($<6.0$), active backlogs ($\times 15$ pts), weak subject clusters, and high stress levels. Classifies students into *Low Risk*, *Moderate Risk*, *High Risk*, or *Critical Risk*.
+- **Automated SWOT Analysis:** Synthesizes strengths, vulnerability areas, academic opportunities, and recommended advisor interventions.
+
+![Performance Analysis Dashboard & Radar Diagnostics](assets/screenshots/02_performance_analysis_dashboard.png)
+
+---
 
 ### 3. 🏛️ Advisor & Faculty Portal
-- Real-time department comparison charts (Average CGPA vs. Attendance).
-- Cohort risk distribution doughnut chart.
-- Student record directory with real-time text search and filter by department/risk.
-- One-click CSV export of all student performance data.
-- Recorded advisor counseling remarks saved directly to student records.
+A bird's-eye supervisory command center designed for department deans, heads, and academic mentors to spot institutional risks early:
+- **Department Academic Comparison:** Dynamic Chart.js bar graph comparing average CGPA and attendance rates across Engineering and Management branches.
+- **Academic Risk Classification:** Doughnut visualization depicting the distribution of students across Low, Moderate, High, and Critical risk tiers.
+- **Live Search & Filterable Directory:** Instant client-side search across roll numbers, names, departments, and risk levels.
+- **One-Click CSV Export:** Generates structured, timestamped CSV records formatted for external BI tools and academic audits.
+- **Recorded Advisor Counseling Notes:** Enables mentors to log persistent remarks, intervention strategies, and remediation follow-ups.
+
+![Advisor & Faculty Cohort Portal](assets/screenshots/03_advisor_faculty_portal.png)
+
+---
+
+### 4. 🔐 Secure Authentication & Access Control
+Enterprise-grade session management with role-based access control (RBAC):
+- **Role Isolation:** Enforces distinct boundaries between `student` and `faculty`/`advisor` user types.
+- **Cryptographic Protection:** Flask-WTF CSRF tokens on all login and registration post requests.
+- **Quick Demo Login:** One-click pre-fills for instant evaluative testing of pre-seeded student and faculty accounts.
+
+![Secure Authentication Portal](assets/screenshots/04_secure_auth_portal.png)
 
 ---
 
@@ -175,6 +199,14 @@ academic_performance_portal/
 │   └── static/                   # Static assets
 │       ├── css/style.css         # Custom animations & theme styles
 │       └── js/app.js             # Form stepper, Chart.js managers & REST clients
+├── assets/                       # High-resolution visual previews & documentation media
+│   └── screenshots/              # 2x Retina UI captures
+│       ├── 01_student_evaluation_form.png
+│       ├── 02_performance_analysis_dashboard.png
+│       ├── 03_advisor_faculty_portal.png
+│       └── 04_secure_auth_portal.png
+├── scripts/                      # Automation & developer toolchain
+│   └── capture_screenshots.js    # Automated Headless Chrome QA & screenshot engine
 ├── tests/                        # Comprehensive automated test suite
 │   ├── __init__.py
 │   ├── base.py                   # Base test case with isolated SQLite test DB
